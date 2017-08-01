@@ -2,12 +2,12 @@
 .SYNOPSIS
     Ein einfaches PowerShell Script um den Inhalt von Ordnern zu vergleichen.
 .DESCRIPTION
-    Mit diesem PowerShell Script können Inhalte von Ordnern verglichen werden. Zusätzlich kann eine Logdatei im CSV Format erstellt werden, diese enthält eine Überischt von Dateien die im Zielverzeichnis nicht existieren oder Unterschiede aufweisen.
+    Mit diesem PowerShell Script kÃ¶nnen Inhalte von Ordnern verglichen werden. ZusÃ¤tzlich kann eine Logdatei im CSV Format erstellt werden, diese enthÃ¤lt eine Ãœbersicht von Dateien die im Zielverzeichnis nicht existieren oder Unterschiede aufweisen.
 
     Die CSV Datei ist wie folgt aufgebaut:
     Zahl|Dateipfad
 
-    Die Zahl steht hierbei für den Dateistatus:
+    Die Zahl steht hierbei fÃ¼r den Dateistatus:
     # 0 = Datei in Ordnung
     # 1 = Datei ist Ungleich
     # 2 = Datei wurde nicht gefunden
@@ -37,10 +37,10 @@
     [string]$logfile = "output.csv",
     [bool]$uselogfile = $(
         $title = "Logdatei"
-        $message = "Soll während der Ausführung eine Logdatei ($logfile) erstellt werden? (J/N)"
+        $message = "Soll wÃ¤hrend der AusfÃ¼hrung eine Logdatei ($logfile) erstellt werden? (J/N)"
 
         $no = New-Object System.Management.Automation.Host.ChoiceDescription "&Nein", `
-            "Diesen Schritt überspringen"
+            "Diesen Schritt Ã¼berspringen"
 
         $yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Ja", `
          "Eine Logdatei erstellen"
@@ -78,7 +78,7 @@ function CheckFolderExist
     (
         [parameter(
             Mandatory = $true,
-            HelpMessage = "Prüft ob der angegebene Ordner existiert, falls nicht wird eine Ausnahme ausgelöst."
+            HelpMessage = "PrÃ¼ft ob der angegebene Ordner existiert, falls nicht wird eine Ausnahme ausgelÃ¶st."
         )]
         [string]
         $folder
@@ -93,7 +93,7 @@ function CheckFolderExist
 
 Try
 {
-    # Array mit folgenden Zählwerten: OK, Ungleich, Nicht gefunden
+    # Array mit folgenden ZÃ¤hlwerten: OK, Ungleich, Nicht gefunden
     [int[]] $c_files = @(0,0,0)
 
     # Status der aktuellen Datei
@@ -115,7 +115,7 @@ Try
 
     $files  = Get-ChildItem -Recurse -Attributes !Directory+!System -Path $sourceFolder
 
-    Write-Host "`n### Dateien werden überprüft ###`n"
+    Write-Host "`n### Dateien werden Ã¼berprÃ¼ft ###`n"
 
     foreach($file in $files ) {
         $sourceFile = $file.FullName.Remove(0, $sourceFolder.Length)
@@ -148,7 +148,7 @@ Try
         Write-Host $sourceFile
     }
 
-    Write-Host "`n### Prüfung abgeschlossen ###`n"
+    Write-Host "`n### PrÃ¼fung abgeschlossen ###`n"
 
     # Bericht Ausgeben
 
